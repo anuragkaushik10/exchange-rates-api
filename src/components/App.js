@@ -4,13 +4,16 @@ import CurrencyRow from "./CurrencyRow";
 import DatePicker from "react-datepicker";
 
 function App() {
-  const [currencyOptions, setCurrencyOptions] = useState([]);
-  const [fromCurrency, setFromCurrency] = useState();
-  const [toCurrency, setToCurrency] = useState();
-  const [exchangeRate, setExchangeRate] = useState();
-  const [amount, setAmount] = useState("");
+  const [currencyOptions, setCurrencyOptions] = useState([]); // for all currency available
+  const [fromCurrency, setFromCurrency] = useState(); // from currency
+  const [toCurrency, setToCurrency] = useState(); // to currency
+  const [exchangeRate, setExchangeRate] = useState(); // rate between two currency
+  const [amount, setAmount] = useState(""); // amount which you want to be converted
   const [amountInFromCurrency, setAmountInFromCurrency] = useState(true);
   const [initialDate, setInitialDate] = useState(new Date());
+
+  //Initializing the api ->
+  // apiKey => fkXP6uAr5b1K6WKV5teKHnDYX1OzyK6W
   var myHeaders = new Headers();
   myHeaders.append("apikey", "fkXP6uAr5b1K6WKV5teKHnDYX1OzyK6W");
 
@@ -28,7 +31,7 @@ function App() {
     toAmount = amount;
     fromAmount = amount / exchangeRate;
   }
-  // https://api.apilayer.com/exchangerates_data/latest/2020-01-01
+  // for fetching all currency
   useEffect(() => {
     fetch(`https://api.apilayer.com/exchangerates_data/latest`, requestOptions)
       .then((res) => res.json())
@@ -40,7 +43,7 @@ function App() {
         setExchangeRate(data.rates[firstCurrency]);
       });
   }, []);
-
+  // for fetching the value
   useEffect(() => {
     if (fromCurrency != null && toCurrency != null) {
       fetch(
@@ -65,12 +68,13 @@ function App() {
   return (
     <>
       <h1 className="heading">Currency Convert</h1>
-      <DatePicker
+      {/* Trying to impliment date here but failed to do so  i was using DatePicker libery to do so. Date picker is not working so i have commented it.*/}
+      {/* <DatePicker
         selected={initialDate}
         onChange={(date) => setInitialDate(date)}
         dateFormat="yyyy/MM/dd"
         maxDate={new Date()}
-      />
+      /> */}
       <div className="main-content">
         {/* <input type="date" value={initialDate} onChange={setInitialDate} /> */}
         <CurrencyRow
