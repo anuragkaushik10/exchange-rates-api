@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #F8F4E3;
+}
+
+.heading{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 4vw;
+    text-decoration: underline;
+    text-transform: uppercase;
+}
+
+@media (max-width:768px){
+    .heading{
+        font-size: 6vw;
+    }
+}
+
+.main-content{
+    margin:auto;
+    border: 2px solid black;
+    padding: 20px;
+    margin-top: 50px;
+    width: 50%;
+}
+
+.main{
+    text-align: center;
+}
